@@ -1,4 +1,11 @@
+# Docker
+
+## Tasks
+
+* **docker-build**
+
 ## Variables
+
 
 Var | Purpose | Default
 :---|:--------|:---------
@@ -7,6 +14,7 @@ DOCKER_IMAGE | The name of the Docker image to build | `basename $PWD`
 DOCKER_TAG | Docker image tag | `dev`
 DOCKER_FILE | Where Dockerfile lives | `./docker/Dockerfile`
 APP_CODE | Docker context directory | `.`
+
 
 
 ## Assumptions

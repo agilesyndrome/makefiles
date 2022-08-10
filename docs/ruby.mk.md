@@ -1,5 +1,9 @@
 # Ruby
 
+## Tasks
+
+* **ruby-server**
+
 ## Variables
 
 Var | Purpose | Default
