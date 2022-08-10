@@ -3,6 +3,7 @@
 ## Tasks
 
 * **docker-build**
+* **docker-up**
 
 ## Variables
 
