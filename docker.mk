@@ -1,9 +1,14 @@
 DOCKER_ORG:=$(shell basename $$(dirname $$PWD))
 DOCKER_IMAGE:=$(shell basename $$PWD)
-DOCKER_TAG:=dev
+DOCKER_TAG:=$(shell git branch --show-current)
+DOCKER_FILE:=./docker/Dockerfile
 
-image:
-	@echo $(DOCKER_ORG)
-	@echo $(DOCKER_IMAGE)
-	docker build -t $(DOCKER_ORG)/$(DOCKER_IMAGE):$(DOCKER_TAG)
+docker-build:
+	. ./.makeconfig && \
+	. ./docker/build-env && \
+	docker build \
+		--build-arg $(shell cat ./docker/build-args) \
+		-t $(DOCKER_ORG)/$(DOCKER_IMAGE):$(DOCKER_TAG) \
+		-f ./docker/Dockerfile \
+		 $${APP_CODE}
 
