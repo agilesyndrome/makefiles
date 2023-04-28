@@ -2,6 +2,7 @@ DOCKER_ORG:=$(shell basename $$(dirname $$PWD))
 DOCKER_IMAGE:=$(shell basename $$PWD)
 DOCKER_TAG:=$(shell git branch --show-current)
 DOCKER_FILE:=./docker/Dockerfile
+COMPOSE_PROJECT:=$${APP_NAME}
 CTX:=app
 
 docker-debug:
@@ -17,7 +18,9 @@ docker-build:
 		 $${APP_CODE}
 
 docker-up:
-	@docker-compose -f ./docker/docker-compose.yml up
+	. ./.makeconfig && \
+	docker-compose -f ./docker/docker-compose.yml -p $(COMPOSE_PROJECT) up
 
 docker-shell:
-	@docker-compose -f ./docker/docker-compose.yml exec $(CTX) bash
+	. ./.makeconfig && \
+	docker-compose -f ./docker/docker-compose.yml -p $(COMPOSE_PROJECT) exec $(CTX) bash
